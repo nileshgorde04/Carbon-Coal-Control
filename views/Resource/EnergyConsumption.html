@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Consumption Form</title>
+    <link rel="stylesheet" href="ProjectC3.css">
+    <script src="Resource.js" defer></script>
+</head>
+<body>
+
+    <!-- Falling Coal Animation -->
+    <div class="coal"></div>
+    <div class="coal"></div>
+    <div class="coal"></div>
+    <div class="coal"></div>
+
+    <!-- Energy Consumption Form -->
+    <div class="form-container">
+        <div class="logo-container">
+            <h1 class="c3-text">C3</h1>
+            <h2 class="dashboard-title">Energy Consumption Form</h2>
+        </div>
+        <form id="form1">
+            <fieldset>
+
+                <label for="energyType">Energy Type</label>
+                <input type="text" id="energyType" placeholder="Coal, Solar, etc.">
+
+                <label for="energyUsed">Energy Used (kWh)</label>
+                <input type="text" id="energyUsed" placeholder="Enter the amount of energy used">
+
+                <label for="timePeriod">Time Period</label>
+                <input type="date" id="timePeriod" placeholder="Enter the date/time period">
+
+                <label for="emissionFactor">Emission Factor</label>
+                <input type="text" id="emissionFactor" placeholder="Enter the emission factor">
+
+                <label for="Totalemission">Total Emission</label>
+                <input type="text" id="Totalemission" placeholder="Enter the Total emission ">
+
+
+
+                <input type="submit" value="Submit">
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+</html>

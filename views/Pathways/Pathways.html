@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Control Pathways Form</title>
+    <link rel="stylesheet" href="Pathways.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>CO2 Control Pathways</h1>
+        <form id="co2-form">
+            <!-- User Type -->
+            <div class="form-group">
+                <label for="user-type">What type of user are you?</label>
+                <select id="user-type" name="userType" required>
+                    <option value="">Select an option</option>
+                    <option value="individual">Individual</option>
+                    <option value="business">Business/Industry</option>
+                    <option value="government">Government</option>
+                    <option value="agriculture">Agriculture</option>
+                </select>
+            </div>
+
+            <!-- Primary Activity -->
+            <div class="form-group">
+                <label for="activity">What is your primary activity?</label>
+                <select id="activity" name="activity" required>
+                    <option value="">Select an option</option>
+                    <option value="commuting">Commuting</option>
+                    <option value="homeowner">Homeowner</option>
+                    <option value="farming">Farming/Forestry</option>
+                    <option value="manufacturing">Manufacturing/Industry</option>
+                </select>
+            </div>
+
+            <!-- Energy Consumption -->
+            <div class="form-group">
+                <label for="energy">How much energy do you consume monthly? (in kWh or fuel usage)</label>
+                <input type="number" id="energy" name="energy" min="0" placeholder="Enter energy consumption" required>
+            </div>
+
+            <!-- Land Availability -->
+            <div class="form-group">
+                <label for="land">Do you have land available for CO2 sequestration?</label>
+                <select id="land" name="land" required>
+                    <option value="">Select an option</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <!-- Land Size (Conditional) -->
+            <div class="form-group" id="land-size-group" style="display: none;">
+                <label for="land-size">If yes, what size is the land (in acres)?</label>
+                <input type="number" id="land-size" name="landSize" min="0" placeholder="Enter land size">
+            </div>
+
+            <!-- Transportation Mode -->
+            <div class="form-group">
+                <label for="transport">What is your preferred mode of transportation?</label>
+                <select id="transport" name="transport" required>
+                    <option value="">Select an option</option>
+                    <option value="car">Car</option>
+                    <option value="public_transport">Public Transport</option>
+                    <option value="bicycle">Bicycle</option>
+                    <option value="walking">Walking</option>
+                </select>
+            </div>
+
+            <!-- Willingness to Invest -->
+            <div class="form-group">
+                <label>Are you willing to invest in CO2 capture technologies (e.g., CCS, DAC)?</label>
+                <label><input type="radio" name="invest" value="yes" required> Yes</label>
+                <label><input type="radio" name="invest" value="no" required> No</label>
+            </div>
+
+            <!-- Renewable Energy -->
+            <div class="form-group">
+                <label>Would you like to reduce your CO2 emissions by using renewable energy sources?</label>
+                <label><input type="radio" name="renewable" value="yes" required> Yes</label>
+                <label><input type="radio" name="renewable" value="no" required> No</label>
+            </div>
+
+            <button><span class="circle1"></span>
+                <span class="circle2"></span>
+                <span class="circle3"></span>
+                <span class="circle4"></span>
+                <span class="circle5"></span>
+                <span class="text">Submit</span></button>
+        </form>
+
+        <!-- Result Section -->
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="Pathways.js"></script>
+</body>
+</html>

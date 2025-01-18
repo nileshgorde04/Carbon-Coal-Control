@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- coding by @_.codedevotee -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Register Form</title>
+
+    <!--Boxicons CDN-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' 
+    rel='stylesheet'>
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="/assets/LoginPage.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <span class="rotate-bg"></span>
+        <span class="rotate-bg2"></span>
+
+        <div class="form-box login">
+            <h2 class="title animation" style="--i:0; --j:21">Login</h2>
+            <form id="loginForm" >
+
+                <div class="input-box animation" style="--i:1; --j:22">
+                    <input id="username" type="text" required>
+                    <label for="">Username</label>
+                    <i class='bx bxs-user'></i>
+                </div>
+
+                <div class="input-box animation" style="--i:2; --j:23">
+                    <input id="password" type="password" required>
+                    <label for="">Password</label>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+
+                <!-- Role Selection -->
+                <div class="input-box animation" style="--i:3; --j:24">
+                    <select id="role" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="user">User</option>
+                        <option value="data-analyst">Data Analyst</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <label for="role"></label>
+                </div>
+
+                <button type="submit" id="loginbtn" onclick="handleLogin" class="btn animation" style="--i:4; --j:25">Login</button>
+                <div class="linkTxt animation" style="--i:5; --j:26">
+                    <p>Don't have an account? <a href="#" class="register-link">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="info-text login">
+            <h2 class="animation" style="--i:0; --j:20">Project C3</h2>
+            <p class="animation" style="--i:1; --j:21">Coal Carbon Control</p>
+        </div>
+
+        <div class="form-box register">
+            <h2 class="title animation" style="--i:17; --j:0">Sign Up</h2>
+
+            <form action="#">
+                <div class="input-box animation" style="--i:18; --j:1">
+                    <input id="username2" type="text" required>
+                    <label for="">Username</label>
+                    <i class='bx bxs-user'></i>
+                </div>
+
+                <div class="input-box animation" style="--i:19; --j:2">
+                    <input id="email" type="email" required>
+                    <label for="">Email</label>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+
+                <div class="input-box animation" style="--i:20; --j:3">
+                    <input id="password2" type="password" required>
+                    <label for="">Password</label>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+
+                <div class="input-box animation" style="--i:21; --j:4">
+                    <select id="role2" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="user">User</option>
+                        <!--<option value="data-analyst">Data Analyst</option>-->
+                        <option value="admin">Admin</option>
+                    </select>
+                    <label for="role2"></label>
+                </div>
+
+                <button type="submit" id="signupForm" onclick="handleSignup" class="btn animation" style="--i:21;--j:4">Sign Up</button>
+
+                <div class="linkTxt animation" style="--i:22; --j:5">
+                    <p>Already have an account? <a href="#"  class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="info-text register">
+            <h2 class="animation" style="--i:17; --j:0;">Project C3</h2>
+            <p class="animation" style="--i:18; --j:1;">Your step toward green environment and 
+                to stop pollution
+            </p>
+        </div>
+
+    </div>
+
+    <!--Script.js-->
+    <script src="/src/LoginPage.js"></script>
+</body>
+
+</html>

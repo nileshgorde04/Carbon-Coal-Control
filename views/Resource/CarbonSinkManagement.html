@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Sink Management Form</title>
+    <link rel="stylesheet" href="ProjectC3.css">
+    <script src="Resource.js" defer></script>
+</head>
+<body>
+
+    <!-- Falling Coal Animation -->
+    <div class="coal"></div>
+    <div class="coal"></div>
+    <div class="coal"></div>
+    <div class="coal"></div>
+
+    <!-- Carbon Sink Management Form -->
+    <div class="form-container">
+        <div class="logo-container">
+            <h1 class="c3-text">C3</h1>
+            <h2 class="dashboard-title">Carbon Sink Management Form</h2>
+        </div>
+        <form id="form2">
+            <fieldset>
+
+                <label for="sinkType">Sink Type</label>
+                <input type="text" id="sinkType" placeholder="Forest, Wetland, etc.">
+
+                <label for="areaSize">Area Size (hectares)</label>
+                <input type="text" id="areaSize" placeholder="Enter the area size">
+
+                <label for="co2AbsorptionRate">CO₂ Absorption Rate</label>
+                <input type="text" id="co2AbsorptionRate" placeholder="Enter the absorption rate">
+
+                <label for="location">Location</label>
+                <input type="text" id="location" placeholder="Enter the location">
+
+                <label for="lastHealthCheckCSM">Last Health Check</label>
+                <input type="date" id="lastHealthCheckCSM" placeholder="Enter the last health check date">
+
+                <label for="healthStatus">Health Status</label>
+                <input type="text" id="healthStatus" placeholder="Healthy, Damaged, etc.">
+
+                <input type="submit" value="Submit">
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+</html>

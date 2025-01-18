@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Data - Admin Dashboard</title>
+    <link rel="stylesheet" href="/assets/ProjectC3.css"> <!-- Your CSS file name -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- For easier DOM manipulation -->
+</head>
+<body>
+    <!-- Coal Component -->
+    <div class="coal"></div>
+    <div class="coal"></div>
+    <div class="coal"></div>
+    <div class="coal"></div>
+
+    <!-- Logo and Title -->
+    <div class="logo-container">
+        <div class="logo-text">Coal Carbon Control</div>
+    </div>
+
+    <header>
+        <h1>View Data - Admin</h1>
+    </header>
+
+    <main>
+        <div class="card-container">
+            <div class="card" onclick="window.location.href='AdminDashboard.html'">
+                <h2>Back to Dashboard</h2>
+            </div>
+        </div>
+
+        <!-- Table to display the data -->
+        <div id="data-table-container">
+            <h2>Data from All Tables</h2>
+            <div id="data-tables"></div>
+        </div>
+    </main>
+
+    <script>
+        // Fetch data from the backend (/view-data)
+        fetch('/view-data')
+            .then(response => response.json())
+            .then(data => {
+                // Function to create a table dynamically
+                const createTable = (tableName, tableData) => {
+                    const table = document.createElement('table');
+                    table.classList.add('data-table');
+                    
+                    // Create the table header
+                    const thead = document.createElement('thead');
+                    const headerRow = document.createElement('tr');
+                    
+                    // Dynamically create the table headers based on the keys of the first row
+                    Object.keys(tableData[0]).forEach(header => {
+                        const headerCell = document.createElement('th');
+                        headerCell.textContent = header;
+                        headerRow.appendChild(headerCell);
+                    });
+                    
+                    thead.appendChild(headerRow);
+                    table.appendChild(thead);
+
+                    // Create table body
+                    const tbody = document.createElement('tbody');
+                    tableData.forEach(row => {
+                        const rowElement = document.createElement('tr');
+                        Object.values(row).forEach(value => {
+                            const cell = document.createElement('td');
+                            cell.textContent = value;
+                            rowElement.appendChild(cell);
+                        });
+                        tbody.appendChild(rowElement);
+                    });
+                    table.appendChild(tbody);
+
+                    return table;
+                };
+
+                // Loop through all the data and create a table for each table
+                for (const tableName in data) {
+                    const tableData = data[tableName];
+                    const tableContainer = document.createElement('div');
+                    tableContainer.classList.add('table-container');
+                    
+                    // Create a heading for each table (table name)
+                    const tableHeading = document.createElement('h3');
+                    tableHeading.textContent = tableName.replace('_', ' ').toUpperCase();
+                    tableContainer.appendChild(tableHeading);
+
+                    // Create the table for each dataset
+                    tableContainer.appendChild(createTable(tableName, tableData));
+                    document.getElementById('data-tables').appendChild(tableContainer);
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching data:', err);
+            });
+    </script>
+</body>
+</html>

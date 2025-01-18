@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emission Trends</title>
+    <link rel="stylesheet" href="Visualization.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Dummy data for emissions trend (replace with actual data as needed)
+            const sectors = ['Coal Mining', 'Transportation', 'Machinery', 'Processing', 'Waste Management']; // Dummy sector names
+            const emissions = [120, 200, 150, 250, 100]; // Dummy emissions data
+
+            // Get the chart context
+            const emissionCtx = document.getElementById("emissionChart").getContext("2d");
+
+            // Create the emission trend chart
+            new Chart(emissionCtx, {
+                type: "bar",
+                data: {
+                    labels: sectors,
+                    datasets: [{
+                        label: "Emissions Trend (tons)",
+                        data: emissions,
+                        backgroundColor: "rgba(54, 162, 235, 0.2)",
+                        borderColor: "rgba(54, 162, 235, 1)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 50 // Makes the y-axis values more readable
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Emission Trends</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Visualization.html">Home</a></li>
+            <li><a href="Visualization1.html">Emission Trends</a></li>
+            <li><a href="Visualization2.html">Carbon Reduction Progress</a></li>
+            <li><a href="Visualization3.html">Comparison Charts</a></li>
+            <li><a href="Visualization4.html">Export Reports</a></li>
+        </ul>
+    </nav>
+
+    <section id="emission-trends">
+        <h2>Emission Trends</h2>
+        <div class="chart-container">
+            <canvas id="emissionChart"></canvas> <!-- Emission chart will be rendered here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Emissions Monitoring System</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project C3 - Emission Estimation</title>
+    <link rel="stylesheet" href="Emission.css">
+</head>
+
+<body>
+    <header style="height: 100px;"> <!-- Increased header height -->
+        <h1>Emission Estimation</h1>
+        <nav>
+            <ul>
+                <li><a href="#submit-emission">Submit Data</a></li>
+                <li><a href="#view-estimates">View Estimates</a></li>
+                <li><a href="#generate-report">Generate Report</a></li>
+                <li><a href="#manage-credits">Manage Carbon Credits</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="submit-emission" class="input-section">
+            <h2>Input Activity Data</h2>
+            <form id="activity-data-form">
+                    <label for="fuel-usage">Fuel Usage (litres):</label>
+        <input type="number" id="fuel-usage" name="fuel-usage" required>
+        
+        <br> <!-- First blank line -->
+
+        <br> <!-- Second blank line added here -->
+
+        <label for="machinery-usage">Machinery Usage (hours):</label>
+        <input type="number" id="machinery-usage" name="machinery-usage" required>
+	
+	<br> <!-- First blank line -->
+
+        <br> <!-- Second blank line added here -->
+
+        <label for="transport-distance">Transportation Distance (km):</label>
+        <input type="number" id="transport-distance" name="transport-distance" required>
+
+                    <input type="submit" value="Submit">
+            </form>
+        </section>
+
+        <section id="view-estimates" class="result-section">
+            <h2>Emission Estimates</h2>
+            <div id="emission-output"></div>
+        </section>
+
+        <section id="generate-report" class="result-section">
+            <h2>Generate Emission Report</h2>
+            <button id="generate-report-btn">Generate Report</button>
+            <div id="emission-report"></div>
+        </section>
+
+        <section id="manage-credits" class="result-section">
+            <h2>Manage Carbon Credits</h2>
+            <button id="show-credits-btn">Show Credits</button> <!-- Button to show credits -->
+            <div id="carbon-credits"></div> <!-- Display carbon credits here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Project C3 - All Rights Reserved</p>
+    </footer>
+
+    <script src="Emission.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Charts</title>
+    <link rel="stylesheet" href="Visualization.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="Visualization.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Comparison Charts</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Visualization.html">Home</a></li>
+            <li><a href="Visualization1.html">Emission Trends</a></li>
+            <li><a href="Visualization2.html">Carbon Reduction Progress</a></li>
+            <li><a href="Visualization3.html">Comparison Charts</a></li>
+            <li><a href="Visualization4.html">Export Reports</a></li>
+        </ul>
+    </nav>
+
+    <section id="comparison-charts">
+        <h2>Compare Current Emission Data</h2>
+        <div class="comparison-container">
+            <button id="generateChartsButton">Generate Comparison Chart</button>
+            <button id="exportChartsButton">Export Chart to PDF</button>
+            <button id="exportCSVButton">Export Data to CSV</button>
+            
+            <div class="chart-container">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Emissions Monitoring System</p>
+    </footer>
+</body>
+</html>
+

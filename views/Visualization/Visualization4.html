@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Reports</title>
+    <link rel="stylesheet" href="Visualization.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Export Reports</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Visualization.html">Home</a></li>
+            <li><a href="Visualization1.html">Emission Trends</a></li>
+            <li><a href="Visualization2.html">Carbon Reduction Progress</a></li>
+            <li><a href="Visualization3.html">Comparison Charts</a></li>
+            <li><a href="Visualization4.html">Export Reports</a></li>
+        </ul>
+    </nav>
+
+    <section id="export-reports">
+        <h2>Export Your Reports</h2>
+        <form id="exportForm">
+            <label for="reportFormat">Select Format:</label>
+            <select id="reportFormat" name="reportFormat">
+                <option value="pdf">PDF</option>
+                <option value="csv">CSV</option>
+                <option value="jpeg">JPEG</option>
+            </select>
+            <button type="submit">Export Report</button>
+        </form>
+    </section>
+
+
+    <canvas id="emissionChart"></canvas>
+    <canvas id="carbonReductionChart"></canvas>
+    <canvas id="comparisonChart"></canvas>
+
+    <footer>
+        <p>&copy; 2024 Emissions Monitoring System</p>
+    </footer>
+
+    <script>
+
+        const emissionChartCtx = document.getElementById("emissionChart").getContext("2d");
+        const emissionChart = new Chart(emissionChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Coal Mining', 'Transportation', 'Machinery', 'Processing', 'Waste Management'],
+                datasets: [{
+                    label: 'Emissions (tons)',
+                    data: [120, 200, 150, 250, 100],
+                    backgroundColor: "rgba(54, 162, 235, 0.2)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        const carbonReductionChartCtx = document.getElementById("carbonReductionChart").getContext("2d");
+        const carbonReductionChart = new Chart(carbonReductionChartCtx, {
+            type: 'line',
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Carbon Reduction (%)',
+                    data: [5, 15, 25, 35],
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        const comparisonChartCtx = document.getElementById("comparisonChart").getContext("2d");
+        const comparisonChart = new Chart(comparisonChartCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Coal Mining', 'Transportation', 'Machinery'],
+                datasets: [{
+                    label: 'Comparison',
+                    data: [300, 500, 200],
+                    backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(255, 205, 86, 0.2)"],
+                    borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 205, 86, 1)"],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Function to export all charts as JPEG
+        function exportChartsToJPEG() {
+            const images = [
+                emissionChart.toBase64Image(),
+                carbonReductionChart.toBase64Image(),
+                comparisonChart.toBase64Image()
+            ];
+            
+            const zip = new JSZip(); // Using JSZip for multiple file downloads
+            images.forEach((img, index) => {
+                zip.file(`chart_${index + 1}.jpeg`, img.split('data:image/jpeg;base64,')[1], {base64: true});
+            });
+            zip.generateAsync({ type: "blob" }).then(function(content) {
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(content);
+                a.download = "charts.zip"; // Download as a zip file
+                a.click();
+            });
+        }
+
+        // Function to export all charts and data as PDF
+        function exportChartsToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add all charts as images to PDF
+            let yPosition = 10;
+            const charts = [emissionChart, carbonReductionChart, comparisonChart];
+            charts.forEach((chart, index) => {
+                const imageData = chart.toBase64Image();
+                doc.addImage(imageData, 'PNG', 10, yPosition, 180, 100); // Add chart image to PDF
+                yPosition += 110; // Move the position for the next chart
+            });
+
+            // Add text to the PDF
+            doc.text('Emission Trends, Carbon Reduction, and Comparison Charts', 10, yPosition);
+            doc.save('FullReport.pdf');
+        }
+
+        // Function to export all charts data as CSV
+        function exportDataToCSV() {
+            const emissionData = emissionChart.data.datasets[0].data;
+            const reductionData = carbonReductionChart.data.datasets[0].data;
+            const comparisonData = comparisonChart.data.datasets[0].data;
+            
+            let csvContent = "Sector, Emissions, Carbon Reduction, Comparison\n";
+            const sectors = ['Coal Mining', 'Transportation', 'Machinery'];
+            for (let i = 0; i < sectors.length; i++) {
+                csvContent += `${sectors[i]}, ${emissionData[i] || ''}, ${reductionData[i] || ''}, ${comparisonData[i] || ''}\n`;
+            }
+
+            // Create a blob with CSV content and download it
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'FullReport.csv';
+            link.click();
+        }
+
+        // Handle export form submission
+        document.getElementById('exportForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const format = document.getElementById('reportFormat').value;
+
+            if (format === 'pdf') {
+                exportChartsToPDF();
+            } else if (format === 'csv') {
+                exportDataToCSV();
+            } else if (format === 'jpeg') {
+                exportChartsToJPEG();
+            }
+        });
+    </script>
+</body>
+</html>
